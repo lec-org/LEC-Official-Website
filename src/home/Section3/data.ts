@@ -3,7 +3,7 @@ export interface HistoryItem {
   desc: string
 }
 
-export const history: HistoryItem[] = [
+export const HISTORY: HistoryItem[] = [
   { date: '2026-07', desc: '祝陈居浩生日快乐，岁岁欢愉，万事顺意！' },
   { date: '2026-07', desc: '恭喜黄茂入选四川大学优秀大学生暑期夏令营！' },
   { date: '2026-07', desc: '恭喜黄茂入选深圳大学优秀大学生暑期夏令营！' },

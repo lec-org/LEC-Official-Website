@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { HERO_GRID } from './data'
 
 export default function Section1() {
   const ref = useRef<HTMLElement>(null)
@@ -83,10 +84,7 @@ SOF
           <span ref={smallLeftRef} className="whitespace-nowrap font-misans-light text-sm tracking-[0.08em] text-gray-800 uppercase">LEC SOFTWARE STUDIO</span>
 
           <div className="flex flex-col items-center gap-0 flex-shrink-0">
-            {[
-              [1, 1, 1],
-              [0, 1, 1],
-            ].map((row, ri) => (
+            {HERO_GRID.map((row, ri) => (
               <div key={ri} className="flex gap-0">
                 {row.map((v, ci) => {
                   if (v === 0) return (

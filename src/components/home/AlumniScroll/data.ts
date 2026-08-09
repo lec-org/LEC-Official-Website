@@ -1,6 +1,12 @@
-import { useState } from 'react'
+export interface AlumniMember {
+  grade: string
+  name: string
+  dest: string
+  type: string
+  qq?: string
+}
 
-const allMembers: { grade: string; name: string; dest: string; type: string; qq?: string }[] = [
+export const MEMBERS_2025: AlumniMember[] = [
   { grade: '2025', name: '王硕', dest: '软件工程', type: '', qq: '3563745142' },
   { grade: '2025', name: '赵佳琦', dest: '物联网工程', type: '', qq: '3594513696' },
   { grade: '2025', name: '付豪', dest: '网络空间安全', type: '', qq: '2643673981' },
@@ -13,6 +19,9 @@ const allMembers: { grade: string; name: string; dest: string; type: string; qq?
   { grade: '2025', name: '林佳政', dest: '物联网工程', type: '', qq: '1661874625' },
   { grade: '2025', name: '汪美琳', dest: '物联网工程', type: '', qq: '1700930362' },
 
+];
+
+export const MEMBERS_2024: AlumniMember[] = [
   { grade: '2024', name: '徐琦', dest: '物联网工程', type: '', qq: '3029281534' },
   { grade: '2024', name: '曾权军', dest: '物联网工程', type: '', qq: '543298913' },
   { grade: '2024', name: '龚云飞', dest: '软件工程', type: '', qq: '2308777176' },
@@ -26,6 +35,9 @@ const allMembers: { grade: string; name: string; dest: string; type: string; qq?
   { grade: '2024', name: '鲍怡君', dest: '计算机科学与技术', type: '', qq: '1906310787' },
   { grade: '2024', name: '唐韵梅', dest: '物联网工程', type: '', qq: '1922287870' },
 
+];
+
+export const MEMBERS_2023: AlumniMember[] = [
   { grade: '2023', name: '陈居浩', dest: '软件工程', type: '', qq: '1923185303' },
   { grade: '2023', name: '付泽东', dest: '软件工程', type: '', qq: '2069083570' },
   { grade: '2023', name: '黄茂', dest: '软件工程', type: '', qq: '2388522445' },
@@ -37,6 +49,9 @@ const allMembers: { grade: string; name: string; dest: string; type: string; qq?
   { grade: '2023', name: '孟令宇', dest: '物联网工程', type: '', qq: '819978005' },
   { grade: '2023', name: '刁俊熙', dest: '土木工程', type: '', qq: '3169578920' },
 
+];
+
+export const MEMBERS_2022: AlumniMember[] = [
   { grade: '2022', name: '隋炀', dest: '天津大学', type: '深造', qq: '75748326' },
   { grade: '2022', name: '陈信豪', dest: '字节跳动', type: '就业', qq: '3460213296' },
   { grade: '2022', name: '杨东明', dest: '作业帮', type: '就业', qq: '2910887794' },
@@ -45,6 +60,9 @@ const allMembers: { grade: string; name: string; dest: string; type: string; qq?
   { grade: '2022', name: '陈双彬', dest: '字节跳动', type: '就业', qq: '2560720865' },
   { grade: '2022', name: '杨博飞', dest: '美团', type: '就业', qq: '3251801949' },
 
+];
+
+export const MEMBERS_2021: AlumniMember[] = [
   { grade: '2021', name: '赵泽熙', dest: '北京航空航天大学', type: '深造', qq: '1353736793' },
   { grade: '2021', name: '张歆予', dest: '电子科技大学', type: '深造', qq: '1140776490' },
   { grade: '2021', name: '周蕊', dest: '重庆大学', type: '深造', qq: '1748706545' },
@@ -57,6 +75,9 @@ const allMembers: { grade: string; name: string; dest: string; type: string; qq?
   { grade: '2021', name: '蒲俊彦', dest: '字节跳动', type: '就业', qq: '' },
   { grade: '2021', name: '毛逸飞', dest: '东方电气', type: '就业', qq: '1002372219' },
 
+];
+
+export const MEMBERS_2020: AlumniMember[] = [
   { grade: '2020', name: '赵耀东', dest: '电子科技大学', type: '深造', qq: '3303577611' },
   { grade: '2020', name: '何锦涛', dest: '中国地质大学（武汉）', type: '深造', qq: '2844185077' },
   { grade: '2020', name: '孙钰镒', dest: '昆士兰大学', type: '深造', qq: '' },
@@ -67,6 +88,9 @@ const allMembers: { grade: string; name: string; dest: string; type: string; qq?
   { grade: '2020', name: '袁云飞', dest: '中国铁路', type: '就业', qq: '' },
   { grade: '2020', name: '张新云', dest: '事业单位', type: '就业', qq: '404837319' },
 
+];
+
+export const MEMBERS_2019: AlumniMember[] = [
   { grade: '2019', name: '刘洪堃', dest: '电子科技大学', type: '深造', qq: '2510382609' },
   { grade: '2019', name: '岳筱涵', dest: '华东师范大学', type: '深造', qq: '2647790235' },
   { grade: '2019', name: '曹志鹏', dest: '华盛顿大学', type: '深造', qq: '' },
@@ -81,66 +105,16 @@ const allMembers: { grade: string; name: string; dest: string; type: string; qq?
   { grade: '2019', name: '贺邈婵', dest: '字节跳动', type: '就业', qq: '' },
   { grade: '2019', name: '王萌', dest: '字节跳动', type: '就业', qq: '' },
   { grade: '2019', name: '叶尤晟', dest: '美团', type: '就业', qq: '2323122036' },
-]
+];
 
-const gradeLabels = ['2025', '2024', '2023', '2022', '2021', '2020', '2019']
+export const MEMBERS_ALL: AlumniMember[] = [
+  ...MEMBERS_2025,
+  ...MEMBERS_2024,
+  ...MEMBERS_2023,
+  ...MEMBERS_2022,
+  ...MEMBERS_2021,
+  ...MEMBERS_2020,
+  ...MEMBERS_2019,
+];
 
-export default function AlumniScroll() {
-  const [activeGrade, setActiveGrade] = useState('2025')
-
-  const filtered = allMembers.filter(m => m.grade === activeGrade)
-
-  return (
-    <div className="flex h-[650px] md:h-[680px] flex-col rounded-2xl border border-gray-200/60 bg-white/60 p-4 md:p-8">
-      <h3 className="mb-4 text-xl font-bold tracking-[-0.02em] text-gray-900">往届成员</h3>
-      <div className="mb-2 md:mb-6 flex flex-wrap gap-2 md:gap-4 border-b border-gray-200 pb-1 md:pb-3">
-        {gradeLabels.map(g => (
-          <button
-            key={g}
-            onClick={() => setActiveGrade(g)}
-            data-hover-scale
-            className={`font-misans-light text-sm tracking-[0.08em] pb-0 md:pb-1 transition-colors ${activeGrade === g ? 'text-accent border-b-2 border-accent' : 'text-gray-400 hover:text-gray-600'}`}
-          >
-            {g}级
-          </button>
-        ))}
-      </div>
-
-      <div className="grid grid-cols-1 content-start gap-4 sm:grid-cols-2 lg:grid-cols-3 overflow-y-auto">
-        {filtered.map(m => (
-          <div
-            key={m.name}
-            className="relative flex items-center gap-3 rounded-lg border border-gray-100 bg-gray-50 px-4 h-16 md:gap-4 md:px-5 md:h-20"
-          >
-            {m.type && (
-              <span
-                className={`absolute top-1.5 right-2 rounded px-1 text-[0.55rem] md:text-[0.6rem] ${m.type === '深造' ? 'bg-violet-500/10 text-violet-500' : 'bg-accent/10 text-accent'}`}
-              >
-                {m.type}
-              </span>
-            )}
-            <div className="flex h-10 w-10 md:h-12 md:w-12 flex-shrink-0 items-center justify-center rounded-full bg-accent/10 text-sm md:text-base font-semibold text-accent overflow-hidden">
-              {m.qq ? (
-                <img
-                  src={`http://q1.qlogo.cn/g?b=qq&nk=${m.qq}&s=100`}
-                  alt=""
-                  className="h-full w-full object-cover"
-                />
-              ) : (
-                m.name[0]
-              )}
-            </div>
-            <div className="min-w-0 flex-1">
-              <div className="truncate text-sm md:text-base font-semibold text-gray-800">
-                {m.name}
-              </div>
-              <div className="line-clamp-2 font-misans-light text-xs md:text-sm leading-tight text-gray-400">
-                {m.dest}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
+export const GRADE_LABELS = ['2025', '2024', '2023', '2022', '2021', '2020', '2019'] as const;

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { history } from '../data/history'
+import { HISTORY } from './data'
 
 export default function Section3() {
   const ref = useRef<HTMLElement>(null)
@@ -179,7 +179,7 @@ export default function Section3() {
                   >
 <div className="relative space-y-4 md:space-y-8 pb-2">
                   <div className="absolute bottom-0 right-[16px] md:right-[18px] top-0 w-px bg-gray-300/60" />
-                  {history.map((h, i) => (
+                  {HISTORY.map((h, i) => (
                     <div key={`${h.date}-${i}`} className="relative pr-10 md:pr-16">
                       <div className="text-right">
                         <div className="font-bebas text-[1.2rem] md:text-[1.6rem] leading-none text-accent">
@@ -212,7 +212,7 @@ export default function Section3() {
               >
 <div className="relative space-y-4 md:space-y-8 pb-2">
                   <div className="absolute bottom-0 right-[16px] md:right-[18px] top-0 w-px bg-gray-300/60" />
-                  {history.map((h, i) => (
+                  {HISTORY.map((h, i) => (
                     <div key={`${h.date}-${i}`} className="relative pr-10 md:pr-16">
                       <div className="text-right">
                         <div className="font-bebas text-[1.2rem] md:text-[1.6rem] leading-none text-accent">
