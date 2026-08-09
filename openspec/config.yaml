@@ -1,0 +1,6 @@
+schema: spec-driven
+language: zh-CN
+rules:
+  - 中等规模功能更新或 bugfix 必须在 openspec/changes/<change-name>/ 下记录 proposal、design 和 tasks。
+  - 涉及页面结构、数据模型或用户流程的大更新必须额外提供 prd.md。
+  - 完成变更前必须运行 npm run build 和 npm run lint，并在 tasks.md 标记验证结果。

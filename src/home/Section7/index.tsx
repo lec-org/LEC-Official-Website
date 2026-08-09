@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { LEARNING_ITEMS } from './data'
 
 export default function Section7() {
   const ref = useRef<HTMLElement>(null)
@@ -58,11 +59,11 @@ export default function Section7() {
           <div>
             <div className="mb-3 border-b border-gray-300/40 pb-2 text-sm tracking-[0.15em] text-gray-400 uppercase">学习交流</div>
             <ul className="space-y-1">
-              {[ '结对编程 — 以老带新，快速上手实际项目','技术分享会 — 成员轮流主讲，拓宽知识面', '保研护航 — 学长学姐们的资源与亲身经验分享'].map((t, i) => (
+              {LEARNING_ITEMS.map(({ title, description }, i) => (
                 <li key={i} className="body-p font-misans-light text-sm md:text-[1.05rem] leading-[1.75] text-gray-500" style={{ opacity: 0, transform: 'translateY(24px)', transition: `opacity .65s cubic-bezier(0.76,0,0.24,1) ${.6 + i * .1}s, transform .65s cubic-bezier(0.76,0,0.24,1) ${.6 + i * .1}s` }}>
                   <span className="mr-2 text-accent">—</span>
-                  <strong className="font-semibold text-gray-800">{t.split(' — ')[0]}</strong>
-                  <span className="text-gray-400"> — {t.split(' — ')[1]}</span>
+                  <strong className="font-semibold text-gray-800">{title}</strong>
+                  <span className="text-gray-400"> — {description}</span>
                 </li>
               ))}
             </ul>

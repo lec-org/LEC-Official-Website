@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import AlumniScroll from '../components/AlumniScroll'
+import AlumniScroll from '../../components/home/AlumniScroll'
+import { EMPLOYMENT_DESTINATIONS, GRADUATE_DESTINATIONS } from './data'
 
 export default function Section5() {
   const ref = useRef<HTMLElement>(null)
@@ -94,7 +95,7 @@ export default function Section5() {
                       保研深造
                     </div>
                     <ul className="space-y-2">
-                      {['电子科技大学', '重庆大学', '天津大学', '北京航空航天大学'].map((s, i) => (
+                      {GRADUATE_DESTINATIONS.map((s, i) => (
                         <li
                           key={s}
                           className="body-p font-misans-light text-sm md:text-[1.05rem] leading-[1.75] text-gray-500"
@@ -116,7 +117,7 @@ export default function Section5() {
                       就业名企
                     </div>
                     <ul className="space-y-2">
-                      {['字节跳动', '腾讯', '阿里巴巴', '美团'].map((s, i) => (
+                      {EMPLOYMENT_DESTINATIONS.map((s, i) => (
                         <li
                           key={s}
                           className="body-p font-misans-light text-sm md:text-[1.05rem] leading-[1.75] text-gray-500"

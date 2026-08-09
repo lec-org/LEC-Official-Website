@@ -1,15 +1,6 @@
 import { useEffect, useRef } from 'react'
-import PhotoAlbum from '../components/PhotoAlbum'
-
-const albumImages = [
-  'https://ziro.oss-cn-shanghai.aliyuncs.com/pictures/2.webp',
-  'https://ziro.oss-cn-shanghai.aliyuncs.com/pictures/5.webp',
-  'https://ziro.oss-cn-shanghai.aliyuncs.com/pictures/1.webp',
-  'https://ziro.oss-cn-shanghai.aliyuncs.com/pictures/6.webp',
-  'https://ziro.oss-cn-shanghai.aliyuncs.com/pictures/4.webp',
-  'https://ziro.oss-cn-shanghai.aliyuncs.com/pictures/7.webp',
-]
-const albumLabels = Array.from({ length: 6 }, (_, i) => `照片 ${i + 1}`)
+import PhotoAlbum from '../../components/PhotoAlbum'
+import { ALBUM_IMAGES, ALBUM_LABELS } from './data'
 
 export default function Section2() {
   const ref = useRef<HTMLElement>(null)
@@ -87,7 +78,7 @@ export default function Section2() {
           </h2>
 
           <div className="w-full lg:hidden mb-4">
-            <PhotoAlbum images={albumImages} labels={albumLabels} />
+            <PhotoAlbum images={ALBUM_IMAGES} labels={ALBUM_LABELS} />
           </div>
 
           <div className="grid max-w-[1100px] gap-6 md:gap-12 md:grid-cols-2">
@@ -134,7 +125,7 @@ export default function Section2() {
         </div>
 
         <div className="hidden w-full lg:block lg:w-[700px] lg:flex-shrink-0 lg:mr-6 lg:ml-16">
-          <PhotoAlbum images={albumImages} labels={albumLabels} />
+          <PhotoAlbum images={ALBUM_IMAGES} labels={ALBUM_LABELS} />
         </div>
       </div>
 
