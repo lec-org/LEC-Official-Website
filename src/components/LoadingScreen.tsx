@@ -27,14 +27,8 @@ export default function LoadingScreen({ onFinish }: { onFinish: () => void }) {
         if (numRef.current) numRef.current.textContent = '100'
         if (fillRef.current) fillRef.current.style.width = '100%'
         setTimeout(() => {
-          loaderRef.current?.classList.add('split')
+          loaderRef.current?.classList.add('fade-out')
           setPhase('intro')
-          setTimeout(() => {
-            if (loaderRef.current) {
-              loaderRef.current.style.pointerEvents = 'none'
-              loaderRef.current.style.display = 'none'
-            }
-          }, 1200)
         }, 200)
       }
     }
@@ -61,21 +55,10 @@ export default function LoadingScreen({ onFinish }: { onFinish: () => void }) {
   return (
     <>
       <style>{`
-        .loader-half {
-          position: absolute; top: 0; bottom: 0; width: 50%;
-          background: #fff;
-          transition: transform 1s cubic-bezier(0.76,0,0.24,1);
-        }
-        .loader-half.left  { left: 0; }
-        .loader-half.right { right: 0; }
-        .split .loader-half.left  { transform: translateX(-100%); }
-        .split .loader-half.right { transform: translateX(100%); }
         .loader-content {
-          position: relative; z-index: 1;
           text-align: center; pointer-events: none;
-          transition: opacity .4s;
         }
-        .split .loader-content { opacity: 0; }
+        .fade-out { opacity: 0; }
         .gone { opacity: 0 !important; }
         .in { opacity: 1 !important; transform: none !important; }
         .full { width: min(300px, 40vw) !important; }
@@ -83,11 +66,9 @@ export default function LoadingScreen({ onFinish }: { onFinish: () => void }) {
 
       <div
         ref={loaderRef}
-        className="fixed inset-0 z-[9000] flex items-center justify-center"
-        style={{ pointerEvents: 'none' }}
+        className="fixed inset-0 z-[9000] flex items-center justify-center bg-white"
+        style={{ pointerEvents: 'none', transition: 'opacity .5s ease' }}
       >
-        <div className="loader-half left" />
-        <div className="loader-half right" />
         <div className="loader-content">
           <div
             ref={numRef}
@@ -106,7 +87,7 @@ export default function LoadingScreen({ onFinish }: { onFinish: () => void }) {
 
       <div
         ref={introRef}
-        className="fixed inset-0 z-[8999] flex flex-col items-center justify-center bg-white translate-y-4"
+        className="fixed inset-0 z-[8999] flex flex-col items-center justify-center bg-white"
         style={{
           pointerEvents: 'none',
           transition: 'opacity 1s cubic-bezier(0.76,0,0.24,1)',
