@@ -4,6 +4,7 @@ export interface HistoryItem {
 }
 
 export const HISTORY: HistoryItem[] = [
+  { date: '2026-08', desc: '恭喜龚云飞参加码蹄杯大学生程序设计竞赛获得全国一等奖！' },
   { date: '2026-07', desc: '祝陈居浩生日快乐，岁岁欢愉，万事顺意！' },
   { date: '2026-07', desc: '恭喜黄茂入选四川大学优秀大学生暑期夏令营！' },
   { date: '2026-07', desc: '恭喜黄茂入选深圳大学优秀大学生暑期夏令营！' },
