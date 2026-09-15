@@ -47,7 +47,7 @@ export function MemberForm({ mode, grades = [], initialValues }: MemberFormProps
   return (
     <form className="space-y-4" onSubmit={submit}>
       <label className="block text-sm text-gray-700">
-        届别
+        级别
         <input
           className={inputClassName}
           list="member-grade-options"
@@ -65,19 +65,19 @@ export function MemberForm({ mode, grades = [], initialValues }: MemberFormProps
         <input className={inputClassName} onChange={(event) => setName(event.target.value)} required value={name} />
       </label>
       <label className="block text-sm text-gray-700">
-        去向
+        专业 / 去向
         <input className={inputClassName} onChange={(event) => setDest(event.target.value)} placeholder="如：软件工程 / 字节跳动" required value={dest} />
       </label>
       <label className="block text-sm text-gray-700">
-        类型
+        标签
         <select className={inputClassName} onChange={(event) => setType(event.target.value)} value={type}>
-          <option value="">留空（前台不显示标签）</option>
+          <option value="">无标签</option>
           <option value="深造">深造</option>
           <option value="就业">就业</option>
         </select>
       </label>
       <label className="block text-sm text-gray-700">
-        QQ 号（用于头像，选填）
+        QQ 号（用于头像获取，选填）
         <input className={inputClassName} onChange={(event) => setQq(event.target.value)} placeholder="5-12 位数字" value={qq} />
       </label>
       {status === "error" && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">{message}</p>}

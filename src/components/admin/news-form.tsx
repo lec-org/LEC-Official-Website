@@ -53,7 +53,6 @@ export function NewsForm({ mode, initialValues }: NewsFormProps) {
           className={`${inputClassName} min-h-28`}
           maxLength={500}
           onChange={(event) => setDesc(event.target.value)}
-          placeholder="如：恭喜某某同学获得某某比赛国家二等奖！"
           required
           value={desc}
         />

@@ -15,7 +15,17 @@ export default async function AdminMembersPage() {
   return (
     <main className="mx-auto max-w-3xl">
       <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-900">往届成员（{members.length}）</h1>
+        <div className="flex items-center gap-3">
+          <Link
+            aria-label="返回内容管理"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm transition-colors hover:border-accent hover:text-accent"
+            href="/admin"
+            title="返回内容管理"
+          >
+            ←
+          </Link>
+          <h1 className="text-2xl font-bold text-gray-900">往届成员（{members.length}）</h1>
+        </div>
         <div className="flex items-center gap-4">
           <Link className="rounded-full bg-accent px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90" href="/admin/members/new">
             新增成员
@@ -56,9 +66,6 @@ export default async function AdminMembersPage() {
           ))}
         </div>
       )}
-      <Link className="mt-6 inline-block text-sm text-gray-500 transition-colors hover:text-gray-900" href="/admin">
-        返回内容管理
-      </Link>
     </main>
   );
 }
