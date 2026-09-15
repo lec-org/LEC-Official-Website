@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useRef } from 'react'
 import PhotoAlbum from '../../components/PhotoAlbum'
 import { ALBUM_IMAGES, ALBUM_LABELS } from './data'

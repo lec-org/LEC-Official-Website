@@ -1,8 +1,12 @@
+'use client'
+
 import { Fragment, useEffect, useRef, useState, type ComponentType } from 'react'
 import LenisScroll from '../components/LenisScroll'
 import LoadingScreen from '../components/LoadingScreen'
 import QuoteSection from '../components/QuoteSection'
 import Ticker from '../components/Ticker'
+import type { AlumniMember } from '@/lib/members'
+import type { HistoryItem } from '@/lib/news'
 import Section1 from './Section1'
 import Section2 from './Section2'
 import Section3 from './Section3'
@@ -16,15 +20,21 @@ type HomeSection = {
   id: string
   label: string
   anchor?: string
-  Component: ComponentType
+  // Section3/Section5 需要数据 props，在 HomeSections 中按下标单独渲染
+  Component?: ComponentType
+}
+
+type HomeProps = {
+  members: AlumniMember[]
+  news: HistoryItem[]
 }
 
 const sections: HomeSection[] = [
   { id: 'progress-section-0', label: '首页', Component: Section1 },
   { id: 'progress-section-1', label: '团队概况', anchor: 'section-2', Component: Section2 },
-  { id: 'progress-section-2', label: '团队历史', anchor: 'section-3', Component: Section3 },
+  { id: 'progress-section-2', label: '团队历史', anchor: 'section-3' },
   { id: 'progress-section-3', label: '团队成就', anchor: 'section-4', Component: Section4 },
-  { id: 'progress-section-4', label: '成员去向', anchor: 'section-5', Component: Section5 },
+  { id: 'progress-section-4', label: '成员去向', anchor: 'section-5' },
   { id: 'progress-section-5', label: '技术方向', anchor: 'section-6', Component: Section6 },
   { id: 'progress-section-6', label: '团队制度', anchor: 'section-7', Component: Section7 },
   { id: 'progress-section-7', label: '招新报名', anchor: 'section-8', Component: Section8 },
@@ -95,13 +105,13 @@ function FixedNav({ items }: { items: HomeSection[] }) {
   )
 }
 
-function HomeSections({ items }: { items: HomeSection[] }) {
+function HomeSections({ items, members, news }: { items: HomeSection[]; members: AlumniMember[]; news: HistoryItem[] }) {
   return (
     <div>
       {items.map(({ id, Component }, index) => (
         <Fragment key={id}>
           <div id={id}>
-            <Component />
+            {index === 2 ? <Section3 history={news} /> : index === 4 ? <Section5 members={members} /> : Component ? <Component /> : null}
           </div>
           {index === 0 && <Ticker />}
           {index === 1 && (
@@ -127,13 +137,13 @@ function HomeSections({ items }: { items: HomeSection[] }) {
   )
 }
 
-export default function Home() {
+export default function Home({ members, news }: HomeProps) {
   return (
     <div className="relative">
       <ScrollProgress items={sections} />
       <FixedNav items={sections} />
       <LenisScroll>
-        <HomeSections items={sections} />
+        <HomeSections items={sections} members={members} news={news} />
       </LenisScroll>
       <LoadingScreen onFinish={() => {}} />
     </div>

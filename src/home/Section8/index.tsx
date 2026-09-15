@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useRef } from 'react'
 
 export default function Section8() {
@@ -70,7 +72,7 @@ export default function Section8() {
             </p>
           </div>
           <div className="body-p mr-0 flex flex-col items-center gap-1 md:mr-12" style={{ opacity: 0, transform: 'translateY(24px)', transition: 'opacity .65s cubic-bezier(0.76,0,0.24,1) .8s, transform .65s cubic-bezier(0.76,0,0.24,1) .8s' }}>
-            <img src={import.meta.env.BASE_URL + 'qr.png'} alt="QQ群二维码" className="w-[120px] rounded-lg" />
+            <img src="/qr.png" alt="QQ群二维码" className="w-[120px] rounded-lg" />
             <span className="text-xs text-gray-400">乐程官方招新群</span>
           </div>
         </div>

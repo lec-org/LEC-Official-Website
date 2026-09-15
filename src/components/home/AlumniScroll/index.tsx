@@ -1,17 +1,19 @@
+'use client'
+
 import { useState } from 'react'
+import type { AlumniMember } from '@/lib/members'
 
-import { GRADE_LABELS, MEMBERS_ALL } from './data'
+export default function AlumniScroll({ members }: { members: AlumniMember[] }) {
+  const gradeLabels = [...new Set(members.map(m => m.grade))].sort((a, b) => b.localeCompare(a))
+  const [activeGrade, setActiveGrade] = useState(gradeLabels[0] ?? '')
 
-export default function AlumniScroll() {
-  const [activeGrade, setActiveGrade] = useState('2025')
-
-  const filtered = MEMBERS_ALL.filter(m => m.grade === activeGrade)
+  const filtered = members.filter(m => m.grade === activeGrade)
 
   return (
     <div className="flex h-[650px] md:h-[680px] flex-col rounded-2xl border border-gray-200/60 bg-white/60 p-4 md:p-8">
       <h3 className="mb-4 text-xl font-bold tracking-[-0.02em] text-gray-900">往届成员</h3>
       <div className="mb-2 md:mb-6 flex flex-wrap gap-2 md:gap-4 border-b border-gray-200 pb-1 md:pb-3">
-        {GRADE_LABELS.map(g => (
+        {gradeLabels.map(g => (
           <button
             key={g}
             onClick={() => setActiveGrade(g)}
@@ -24,9 +26,9 @@ export default function AlumniScroll() {
       </div>
 
       <div className="grid grid-cols-1 content-start gap-4 sm:grid-cols-2 lg:grid-cols-3 overflow-y-auto">
-        {filtered.map(m => (
+        {filtered.map((m, i) => (
           <div
-            key={m.name}
+            key={`${m.name}-${i}`}
             className="relative flex items-center gap-3 rounded-lg border border-gray-100 bg-gray-50 px-4 h-16 md:gap-4 md:px-5 md:h-20"
           >
             {m.type && (

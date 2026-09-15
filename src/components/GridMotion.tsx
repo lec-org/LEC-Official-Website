@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useRef, useState, type FC, type ReactNode } from 'react';
 import { gsap } from 'gsap';
 
@@ -6,21 +8,23 @@ interface GridMotionProps {
   gradientColor?: string;
 }
 
-function isMobileWidth() {
-  return window.innerWidth < 1024
-}
-
 const GridMotion: FC<GridMotionProps> = ({ items = [], gradientColor = 'black' }) => {
   const gridRef = useRef<HTMLDivElement>(null);
   const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const mouseXRef = useRef<number>(window.innerWidth / 2);
+  const mouseXRef = useRef<number>(0);
 
-  const [colCount, setColCount] = useState(isMobileWidth() ? 4 : 7)
-  const [rowCount, setRowCount] = useState(isMobileWidth() ? 7 : 4)
+  // 组件强依赖浏览器尺寸与 GSAP，挂载后再渲染，避免 SSR 访问 window
+  const [mounted, setMounted] = useState(false);
+  const [colCount, setColCount] = useState(7)
+  const [rowCount, setRowCount] = useState(4)
 
   const totalItems = 28;
   const defaultItems = Array.from({ length: totalItems }, (_, index) => `Item ${index + 1}`);
   const combinedItems = items.length > 0 ? items.slice(0, totalItems) : defaultItems;
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     const update = () => {
@@ -33,11 +37,13 @@ const GridMotion: FC<GridMotionProps> = ({ items = [], gradientColor = 'black' }
         setRowCount(4)
       }
     }
+    update()
     window.addEventListener('resize', update)
     return () => window.removeEventListener('resize', update)
   }, [])
 
   useEffect(() => {
+    mouseXRef.current = window.innerWidth / 2;
     const isMobile = window.innerWidth < 1024;
     gsap.ticker.lagSmoothing(0);
 
@@ -82,6 +88,8 @@ const GridMotion: FC<GridMotionProps> = ({ items = [], gradientColor = 'black' }
       removeAnimationLoop();
     };
   }, []);
+
+  if (!mounted) return null;
 
   return (
     <div ref={gridRef} className="h-full w-full overflow-hidden">

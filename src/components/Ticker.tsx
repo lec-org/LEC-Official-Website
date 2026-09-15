@@ -1,3 +1,5 @@
+'use client'
+
 const items = [
   '全栈开发',
   '算法竞赛',

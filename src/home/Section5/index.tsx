@@ -1,8 +1,11 @@
+'use client'
+
 import { useEffect, useRef, useState } from 'react'
 import AlumniScroll from '../../components/home/AlumniScroll'
 import { EMPLOYMENT_DESTINATIONS, GRADUATE_DESTINATIONS } from './data'
+import type { AlumniMember } from '@/lib/members'
 
-export default function Section5() {
+export default function Section5({ members }: { members: AlumniMember[] }) {
   const ref = useRef<HTMLElement>(null)
   const [showAlumni, setShowAlumni] = useState(false)
 
@@ -150,14 +153,14 @@ export default function Section5() {
               </div>
 
               <div className="hidden w-full lg:block lg:w-[700px] lg:flex-shrink-0 lg:mr-6">
-                <AlumniScroll />
+                <AlumniScroll members={members} />
               </div>
             </div>
           </div>
 
           <div className="flex flex-[0_0_100%] min-w-0 items-center justify-center px-6 md:px-0">
             <div className="w-full max-w-[700px]">
-              <AlumniScroll />
+              <AlumniScroll members={members} />
             </div>
           </div>
         </div>
