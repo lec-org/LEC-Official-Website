@@ -72,7 +72,6 @@ export function MemberForm({ mode, initialValues }: MemberFormProps) {
         <input
           className={inputClassName}
           onChange={event => setName(event.target.value)}
-          placeholder="如：20"
           required
           value={name}
         />
