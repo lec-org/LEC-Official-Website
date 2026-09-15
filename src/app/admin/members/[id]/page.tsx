@@ -16,7 +16,6 @@ export default async function EditMemberPage({ params }: EditMemberPageProps) {
   const members = await getMembers();
   const member = members.find((m) => m.id === id);
   if (!member) notFound();
-  const grades = [...new Set(members.map((m) => m.grade))].sort((a, b) => b.localeCompare(a));
   return (
     <main className="mx-auto max-w-xl">
       <Link className="text-sm text-gray-500 transition-colors hover:text-gray-900" href="/admin/members">
@@ -24,7 +23,7 @@ export default async function EditMemberPage({ params }: EditMemberPageProps) {
       </Link>
       <section className="mt-3 rounded-2xl border border-gray-200/60 bg-white p-6 shadow-sm">
         <h1 className="mb-4 text-xl font-bold text-gray-900">编辑成员（{member.id}）</h1>
-        <MemberForm grades={grades} initialValues={member} mode="edit" />
+        <MemberForm initialValues={member} mode="edit" />
       </section>
     </main>
   );
