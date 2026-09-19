@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { addNewsToIndex, createNewsId, isValidNewsId, removeNewsFromIndex, replaceNewsInIndex, validateNewsInput, type NewsRecord } from "./news";
+import { addNewsToIndex, createNewsId, isValidNewsId, removeNewsFromIndex, replaceNewsInIndex, sortNewsByDateDesc, validateNewsInput, type NewsRecord } from "./news";
 
 const baseNews = { date: "2026-09", desc: "恭喜张三获得国赛一等奖！" };
 
@@ -46,5 +46,30 @@ describe("news index operations", () => {
     expect(isValidNewsId("n-001")).toBe(true);
     expect(isValidNewsId("../evil")).toBe(false);
     expect(isValidNewsId(createNewsId())).toBe(true);
+  });
+});
+
+describe("sortNewsByDateDesc", () => {
+  const record = (id: string, date: string): NewsRecord => ({ id, date, desc: id });
+
+  it("跨月条目按日期降序排列", () => {
+    const sorted = sortNewsByDateDesc([record("a", "2025-01"), record("b", "2026-09"), record("c", "2025-12")]);
+    expect(sorted.map((item) => item.id)).toEqual(["b", "c", "a"]);
+  });
+
+  it("同月条目保持原有相对顺序（稳定排序）", () => {
+    const sorted = sortNewsByDateDesc([record("a", "2026-08"), record("b", "2026-07"), record("c", "2026-08")]);
+    expect(sorted.map((item) => item.id)).toEqual(["a", "c", "b"]);
+  });
+
+  it("兼容未补零的 YYYY-M 日期，非法日期排最后", () => {
+    const sorted = sortNewsByDateDesc([record("a", "2020-8"), record("b", "2020-10"), record("c", "2020-12"), record("d", "bad")]);
+    expect(sorted.map((item) => item.id)).toEqual(["c", "b", "a", "d"]);
+  });
+
+  it("不改变传入数组", () => {
+    const original = [record("a", "2025-01"), record("b", "2026-09")];
+    sortNewsByDateDesc(original);
+    expect(original.map((item) => item.id)).toEqual(["a", "b"]);
   });
 });

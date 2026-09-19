@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import type { MemberRecord } from "@/lib/members";
-import type { NewsRecord } from "@/lib/news";
+import { sortNewsByDateDesc, type NewsRecord } from "@/lib/news";
 
 /** 读取本地 JSON 内容索引的内部通用函数。 */
 async function readCollectionIndex<T>(collection: "members" | "news"): Promise<T[]> {
@@ -19,7 +19,7 @@ export function getMembers(): Promise<MemberRecord[]> {
   return readCollectionIndex<MemberRecord>("members");
 }
 
-/** 读取团队动态索引。 */
-export function getNews(): Promise<NewsRecord[]> {
-  return readCollectionIndex<NewsRecord>("news");
+/** 读取团队动态索引，按日期降序展示（同月内保持存储顺序）。 */
+export async function getNews(): Promise<NewsRecord[]> {
+  return sortNewsByDateDesc(await readCollectionIndex<NewsRecord>("news"));
 }

@@ -20,6 +20,17 @@ export function isValidNewsId(id: string): boolean {
   return NEWS_ID_PATTERN.test(id);
 }
 
+/** 把 YYYY-MM（兼容未补零的 YYYY-M）转换为可比较的月份数值，非法值排最后。 */
+function toMonthValue(date: string): number {
+  const value = Number(date.replace('-', ''));
+  return Number.isNaN(value) ? 0 : value;
+}
+
+/** 将动态按日期降序做稳定排序（同月内保持原有相对顺序），不改变传入数组。 */
+export function sortNewsByDateDesc(news: NewsRecord[]): NewsRecord[] {
+  return [...news].sort((a, b) => toMonthValue(b.date) - toMonthValue(a.date));
+}
+
 /** 生成新的动态 id。 */
 export function createNewsId(): string {
   return `n-${randomUUID()}`;

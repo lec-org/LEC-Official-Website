@@ -151,7 +151,7 @@ export function NewsBatchForm() {
         <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">{message}</p>
       )}
       <p className="mt-2 text-sm text-gray-400">
-        点击右上角按钮统一提交，全部动态会以一个 Git 提交写回仓库；表单顺序即首页展示顺序（新动态在前）。
+        点击右上角按钮统一提交，全部动态会以一个 Git 提交写回仓库；展示时自动按日期降序排列，同月内保持填写顺序。
       </p>
     </form>
   )
