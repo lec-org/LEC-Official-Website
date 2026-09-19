@@ -1,7 +1,9 @@
 'use client'
 
-import { useEffect, useRef, useState, type FC, type ReactNode } from 'react';
+import { useEffect, useRef, useState, useSyncExternalStore, type FC, type ReactNode } from 'react';
 import { gsap } from 'gsap';
+
+const emptySubscribe = () => () => {};
 
 interface GridMotionProps {
   items?: (string | ReactNode)[];
@@ -14,17 +16,13 @@ const GridMotion: FC<GridMotionProps> = ({ items = [], gradientColor = 'black' }
   const mouseXRef = useRef<number>(0);
 
   // 组件强依赖浏览器尺寸与 GSAP，挂载后再渲染，避免 SSR 访问 window
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
   const [colCount, setColCount] = useState(7)
   const [rowCount, setRowCount] = useState(4)
 
   const totalItems = 28;
   const defaultItems = Array.from({ length: totalItems }, (_, index) => `Item ${index + 1}`);
   const combinedItems = items.length > 0 ? items.slice(0, totalItems) : defaultItems;
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
 
   useEffect(() => {
     const update = () => {
