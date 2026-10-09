@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -43,10 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://ik.imagekit.io/Ziro/MiSans-Light/result.css?updatedAt=1785220028179"
         />
       </head>
-      <body>
-        {children}
-        <Analytics />
-      </body>
+      <body>{children}</body>
     </html>
   )
 }
