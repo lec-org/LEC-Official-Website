@@ -35,11 +35,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <link
           rel="stylesheet"
-          href="https://ik.imagekit.io/Ziro/MiSans-Medium/result.css?updatedAt=1783173591609"
+          href="https://ziro.oss-cn-shanghai.aliyuncs.com/fonts/MiSans-Medium/result.css"
         />
         <link
           rel="stylesheet"
-          href="https://ik.imagekit.io/Ziro/MiSans-Light/result.css?updatedAt=1785220028179"
+          href="https://ziro.oss-cn-shanghai.aliyuncs.com/fonts/MiSans-Light/result.css"
         />
       </head>
       <body>{children}</body>
