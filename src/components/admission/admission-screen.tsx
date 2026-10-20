@@ -20,7 +20,7 @@ type QueryOutcome = Extract<QueryState, { kind: "result" | "error" }>;
 
 const resultContent = {
   accepted: {
-    title: "录取成功",
+    title: "录取通过",
     ambient: "WELCOME",
   },
   interview_failed: {
