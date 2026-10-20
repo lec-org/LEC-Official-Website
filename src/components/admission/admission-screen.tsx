@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { Autobrightness, ChatSquareCode } from "reicon-react";
-import type { AdmissionStatus } from "@/lib/admission";
-import { AdmissionCelebration } from "./admission-celebration";
+import { findAdmissionStatus, type AdmissionStatus } from "@/lib/admission";
+import { AdmissionCelebration, preloadAdmissionConfetti } from "./admission-celebration";
 import { AdmissionTransition, type AdmissionTransitionPhase } from "./admission-transition";
 import styles from "./admission-screen.module.css";
 
@@ -15,7 +15,7 @@ type QueryState =
   | { kind: "result"; status: AdmissionStatus }
   | { kind: "error"; message: string; field?: "studentId" | "name" };
 
-/** 接口处理完成后暂存的查询结果，在转场覆盖页面时统一展示。 */
+/** 本地匹配后暂存的查询结果，在转场覆盖页面时统一展示。 */
 type QueryOutcome = Extract<QueryState, { kind: "result" | "error" }>;
 
 const resultContent = {
@@ -39,9 +39,8 @@ export function AdmissionScreen() {
   const nameRef = useRef<HTMLInputElement>(null);
   const screenRef = useRef<HTMLDivElement>(null);
   const resultTitleRef = useRef<HTMLHeadingElement>(null);
-  const requestRef = useRef<AbortController | null>(null);
   const pendingOutcomeRef = useRef<QueryOutcome | null>(null);
-  const codeCompleteRef = useRef(false);
+  const transitionLockRef = useRef(false);
   const isSubmitting = queryState.kind === "submitting" || transitionPhase !== null;
   const result = queryState.kind === "result" ? resultContent[queryState.status] : null;
 
@@ -72,18 +71,16 @@ export function AdmissionScreen() {
     }
   }, [queryState.kind, transitionPhase]);
 
-  useEffect(() => () => requestRef.current?.abort(), []);
-
   function revealOutcome() {
-    if (!codeCompleteRef.current || !pendingOutcomeRef.current) return;
+    if (!pendingOutcomeRef.current) return;
     setQueryState(pendingOutcomeRef.current);
     pendingOutcomeRef.current = null;
     setTransitionPhase("revealing");
   }
 
-  async function submit(event: FormEvent<HTMLFormElement>) {
+  function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (isSubmitting || requestRef.current) return;
+    if (isSubmitting || transitionLockRef.current) return;
 
     const query = { studentId: studentId.trim(), name: name.trim() };
     setStudentId(query.studentId);
@@ -102,42 +99,25 @@ export function AdmissionScreen() {
 
     studentIdRef.current?.blur();
     nameRef.current?.blur();
-    const controller = new AbortController();
-    requestRef.current = controller;
-    pendingOutcomeRef.current = null;
-    codeCompleteRef.current = false;
+    transitionLockRef.current = true;
     setQueryState({ kind: "submitting" });
     setTransitionPhase("covering");
 
     try {
-      const response = await fetch("/api/admission", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(query),
-        signal: AbortSignal.any([controller.signal, AbortSignal.timeout(15_000)]),
-      });
-      const body: unknown = await response.json();
-
-      if (response.status === 400 && typeof body === "object" && body !== null && "error" in body && typeof body.error === "string") {
-        pendingOutcomeRef.current = { kind: "error", message: body.error };
-      } else if (!response.ok || typeof body !== "object" || body === null || !("status" in body)) {
-        throw new Error("Invalid admission response");
-      } else if (body.status === null) {
+      const status = findAdmissionStatus(query);
+      if (status === null) {
         pendingOutcomeRef.current = { kind: "error", message: "未查询到信息，请确认填写无误" };
-      } else if (body.status !== "accepted" && body.status !== "interview_failed") {
-        throw new Error("Invalid admission status");
       } else {
-        pendingOutcomeRef.current = { kind: "result", status: body.status };
+        pendingOutcomeRef.current = { kind: "result", status };
+        if (status === "accepted" && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          void preloadAdmissionConfetti().catch(() => {
+            // 转场继续播放，礼花加载失败不影响查询结果。
+          });
+        }
       }
     } catch {
-      if (controller.signal.aborted) return;
       pendingOutcomeRef.current = { kind: "error", message: "查询失败，请稍后重试" };
-    } finally {
-      if (requestRef.current === controller) requestRef.current = null;
     }
-
-    if (controller.signal.aborted) return;
-    revealOutcome();
   }
 
   const studentIdInvalid = queryState.kind === "error" && queryState.field === "studentId";
@@ -153,7 +133,7 @@ export function AdmissionScreen() {
         <div aria-hidden="true" className={`${styles.ambient} font-bebas`}>{result?.ambient ?? "ADMISSION"}</div>
         <header className={styles.header}>
           <span className="font-bebas text-2xl tracking-widest text-gray-800">LEC<span className="text-accent">.</span></span>
-          <Link href="/" className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm text-gray-600 transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent">
+          <Link href="/" prefetch={false} className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm text-gray-600 transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent">
             <span aria-hidden="true">←</span>
             返回官网
           </Link>
@@ -301,11 +281,11 @@ export function AdmissionScreen() {
         <AdmissionTransition
           phase={transitionPhase}
           onCovered={() => setTransitionPhase("code")}
-          onCodeComplete={() => {
-            codeCompleteRef.current = true;
-            revealOutcome();
+          onCodeComplete={revealOutcome}
+          onRevealed={() => {
+            transitionLockRef.current = false;
+            setTransitionPhase(null);
           }}
-          onRevealed={() => setTransitionPhase(null)}
         />
       )}
     </div>

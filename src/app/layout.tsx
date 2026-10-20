@@ -28,10 +28,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="zh-CN">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@300;400;600;700&display=swap"
           rel="stylesheet"
+          href="https://ziro.oss-cn-shanghai.aliyuncs.com/fonts/SourceHanSerifSC-Bold/result.css"
         />
         <link
           rel="stylesheet"

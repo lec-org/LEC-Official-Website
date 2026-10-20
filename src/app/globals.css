@@ -2,9 +2,9 @@
 
 @theme {
   --font-bebas: "Bebas Neue", sans-serif;
-  --font-serif: "Noto Serif SC", serif;
-  --font-sans: "MiSans Medium", "Noto Sans SC", sans-serif;
-  --font-misans-light: "MiSans Light", "Noto Sans SC", sans-serif;
+  --font-serif: "Source Han Serif SC", serif;
+  --font-sans: "MiSans Medium", sans-serif;
+  --font-misans-light: "MiSans Light", sans-serif;
   --color-accent: #42A5F5;
 }
 
@@ -13,5 +13,5 @@ html {
 }
 
 body {
-  font-family: "MiSans Medium", "Noto Sans SC", sans-serif;
+  font-family: "MiSans Medium", sans-serif;
 }

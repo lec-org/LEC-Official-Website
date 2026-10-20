@@ -2,6 +2,15 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import * as admission from "../../../lib/admission";
 import { POST } from "./route";
 
+// 兼容接口使用独立示例验证，避免依赖可编辑的实际录取名单。
+vi.mock("../../../../public/admission/index.json", () => ({
+  default: [
+    { studentId: "202600000001", name: "示例学生01", status: "accepted" },
+    { studentId: "202600000013", name: "示例学生13", status: "interview_failed" },
+    { studentId: "202600000025", name: "示例学生25", status: "interview_failed" },
+  ],
+}));
+
 /** 构造录取查询接口的 JSON 请求。 */
 function createRequest(body: unknown) {
   return new Request("http://localhost/api/admission", {

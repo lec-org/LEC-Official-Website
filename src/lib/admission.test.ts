@@ -1,5 +1,17 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { AdmissionValidationError, findAdmissionStatus, validateAdmissionQuery } from "./admission";
+
+// 测试使用独立示例，维护 public 中的实际名单不会改变匹配规则测试。
+vi.mock("../../public/admission/index.json", () => ({
+  default: [
+    { studentId: "202600000001", name: "示例学生01", status: "accepted" },
+    { studentId: "202600000012", name: "示例学生12", status: "accepted" },
+    { studentId: "202600000013", name: "示例学生13", status: "interview_failed" },
+    { studentId: "202600000024", name: "示例学生24", status: "interview_failed" },
+    { studentId: "202600000025", name: "示例学生25", status: "interview_failed" },
+    { studentId: "202600000036", name: "示例学生36", status: "interview_failed" },
+  ],
+}));
 
 describe("validateAdmissionQuery", () => {
   it("去除首尾空格并保留学号字符串", () => {
