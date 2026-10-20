@@ -4,7 +4,7 @@
   inset: 0;
   isolation: isolate;
   display: flex;
-  height: 100svh;
+  height: var(--admission-height, 100svh);
   flex-direction: column;
   overflow: hidden;
   overscroll-behavior: none;

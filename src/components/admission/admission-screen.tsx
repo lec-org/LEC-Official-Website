@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
-import { Autobrightness, ChatSquareCode } from "reicon-react";
+import { Verify, ChatSquareCode } from "reicon-react";
 import { findAdmissionStatus, type AdmissionStatus } from "@/lib/admission";
 import { AdmissionCelebration, preloadAdmissionConfetti } from "./admission-celebration";
 import { AdmissionTransition, type AdmissionTransitionPhase } from "./admission-transition";
@@ -37,11 +37,34 @@ export function AdmissionScreen() {
   const [transitionPhase, setTransitionPhase] = useState<AdmissionTransitionPhase | null>(null);
   const studentIdRef = useRef<HTMLInputElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
+  const screenRef = useRef<HTMLDivElement>(null);
   const resultTitleRef = useRef<HTMLHeadingElement>(null);
   const pendingOutcomeRef = useRef<QueryOutcome | null>(null);
   const transitionLockRef = useRef(false);
   const isSubmitting = queryState.kind === "submitting" || transitionPhase !== null;
   const result = queryState.kind === "result" ? resultContent[queryState.status] : null;
+
+  useEffect(() => {
+    const screen = screenRef.current;
+    if (!screen) return;
+
+    let layoutWidth = window.innerWidth;
+    screen.style.setProperty("--admission-height", `${screen.clientHeight}px`);
+
+    function updateLayout() {
+      if (!screen) return;
+      const width = window.innerWidth;
+      // 手机键盘和地址栏只改变高度时，保留原有布局；旋转屏幕后才重新计算。
+      if (window.matchMedia("(pointer: coarse)").matches && width === layoutWidth) return;
+      if (document.activeElement instanceof HTMLInputElement) return;
+      layoutWidth = width;
+      screen.style.removeProperty("--admission-height");
+      screen.style.setProperty("--admission-height", `${screen.clientHeight}px`);
+    }
+
+    window.addEventListener("resize", updateLayout);
+    return () => window.removeEventListener("resize", updateLayout);
+  }, []);
 
   useEffect(() => {
     if (queryState.kind === "result" && transitionPhase === null) {
@@ -103,7 +126,7 @@ export function AdmissionScreen() {
   const inputClassName = `${styles.input} w-full rounded-xl border border-gray-200 bg-gray-50/70 px-4 text-base text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-accent focus:bg-white focus:ring-4 focus:ring-accent/10 aria-invalid:border-red-400`;
 
   return (
-    <div className={styles.screen} aria-busy={isSubmitting}>
+    <div ref={screenRef} className={styles.screen} aria-busy={isSubmitting}>
       <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
         {isSubmitting ? "正在查询录取信息" : queryState.kind === "error" ? queryState.message : ""}
       </div>
@@ -122,7 +145,7 @@ export function AdmissionScreen() {
             <div className={styles.resultContent}>
               <div aria-hidden="true" className={styles.resultMark}>
                 {queryState.kind === "result" && queryState.status === "accepted" ? (
-                  <Autobrightness size={85} />
+                  <Verify size={85} />
                 ) : (
                   <ChatSquareCode size={65} />
                 )}
