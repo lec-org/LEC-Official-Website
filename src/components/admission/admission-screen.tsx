@@ -127,7 +127,7 @@ export function AdmissionScreen() {
                   <ChatSquareCode size={65} />
                 )}
               </div>
-              <p className={styles.resultEyebrow}>2026 · 查询结果</p>
+              <p className={styles.resultEyebrow}>2026 · 乐程软件工作室</p>
               <h1 ref={resultTitleRef} id="admission-result-title" tabIndex={-1} aria-describedby="admission-result-description" className={styles.resultTitle}>
                 {result.title}
               </h1>
