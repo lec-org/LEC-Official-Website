@@ -23,7 +23,7 @@ const sourceLines = [
   '    aria-live="polite"',
   '  >',
   '    <div class="status">',
-  '      <h1></h1>',
+  '      <h1>录取查询</h1>',
   '      <p>数据请求中...</p>',
   '    </div>',
   '    <button type="button">',
