@@ -9,5 +9,14 @@ export const metadata: Metadata = {
 
 /** 提供查询页面的元信息，并挂载整屏查询与结果交互。 */
 export default function AdmissionPage() {
-  return <AdmissionScreen />;
+  return (
+    <>
+      <link
+        rel="stylesheet"
+        href="https://ziro.oss-cn-shanghai.aliyuncs.com/fonts/CascadiaMono/result.css"
+        precedence="default"
+      />
+      <AdmissionScreen />
+    </>
+  );
 }
