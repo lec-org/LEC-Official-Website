@@ -20,11 +20,11 @@ type QueryOutcome = Extract<QueryState, { kind: "result" | "error" }>;
 
 const resultContent = {
   accepted: {
-    title: "录取通过",
+    title: "成功录取",
     ambient: "WELCOME",
   },
   interview_failed: {
-    title: "未通过面试",
+    title: "未录取",
     ambient: "ONWARD",
   },
 };
@@ -37,33 +37,11 @@ export function AdmissionScreen() {
   const [transitionPhase, setTransitionPhase] = useState<AdmissionTransitionPhase | null>(null);
   const studentIdRef = useRef<HTMLInputElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
-  const screenRef = useRef<HTMLDivElement>(null);
   const resultTitleRef = useRef<HTMLHeadingElement>(null);
   const pendingOutcomeRef = useRef<QueryOutcome | null>(null);
   const transitionLockRef = useRef(false);
   const isSubmitting = queryState.kind === "submitting" || transitionPhase !== null;
   const result = queryState.kind === "result" ? resultContent[queryState.status] : null;
-
-  useEffect(() => {
-    const viewport = window.visualViewport;
-    const screen = screenRef.current;
-    if (!viewport || !screen) return;
-
-    // 软键盘弹出时跟随可视区域缩小，保持输入框和提交按钮可见。
-    function updateViewport() {
-      if (!viewport || !screen) return;
-      screen.style.height = `${viewport.height}px`;
-      screen.style.top = `${viewport.offsetTop}px`;
-    }
-
-    updateViewport();
-    viewport.addEventListener("resize", updateViewport);
-    viewport.addEventListener("scroll", updateViewport);
-    return () => {
-      viewport.removeEventListener("resize", updateViewport);
-      viewport.removeEventListener("scroll", updateViewport);
-    };
-  }, []);
 
   useEffect(() => {
     if (queryState.kind === "result" && transitionPhase === null) {
@@ -125,7 +103,7 @@ export function AdmissionScreen() {
   const inputClassName = `${styles.input} w-full rounded-xl border border-gray-200 bg-gray-50/70 px-4 text-base text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-accent focus:bg-white focus:ring-4 focus:ring-accent/10 aria-invalid:border-red-400`;
 
   return (
-    <div ref={screenRef} className={styles.screen} aria-busy={isSubmitting}>
+    <div className={styles.screen} aria-busy={isSubmitting}>
       <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
         {isSubmitting ? "正在查询录取信息" : queryState.kind === "error" ? queryState.message : ""}
       </div>
@@ -181,7 +159,9 @@ export function AdmissionScreen() {
                 className={`${styles.queryAgain} rounded-xl text-sm font-medium text-white transition-opacity hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current`}
                 onClick={() => {
                   setQueryState({ kind: "idle" });
-                  requestAnimationFrame(() => studentIdRef.current?.focus({ preventScroll: true }));
+                  if (window.matchMedia("(min-width: 768px)").matches) {
+                    requestAnimationFrame(() => studentIdRef.current?.focus({ preventScroll: true }));
+                  }
                 }}
               >
                 重新查询
