@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react'
+import { createPortal } from 'react-dom'
 import styles from './admission-screen.module.css'
 
 /** 查询转场依次经历的蓝色覆盖、源码展示和结果揭示阶段。 */
@@ -43,7 +44,10 @@ export function AdmissionTransition({
   onCodeComplete,
   onRevealed,
 }: AdmissionTransitionProps) {
-  return (
+  if (typeof document === 'undefined') return null
+
+  // 独立挂到 body，避免被固定高度的表单容器裁切，覆盖手机地址栏收起后的完整视口。
+  return createPortal(
     <div
       className={styles.transition}
       data-phase={phase}
@@ -81,6 +85,7 @@ export function AdmissionTransition({
           </code>
         </pre>
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }

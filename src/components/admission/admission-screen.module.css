@@ -30,10 +30,12 @@
   --line-stagger: 35ms;
   --line-duration: 350ms;
   --layer-delay: 180ms;
-  position: absolute;
+  position: fixed;
   inset: 0;
+  height: 100dvh;
   z-index: 50;
   overflow: hidden;
+  container-type: size;
 }
 
 .transitionWhite,
