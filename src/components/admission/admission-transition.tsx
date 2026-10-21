@@ -48,31 +48,39 @@ export function AdmissionTransition({
       className={styles.transition}
       data-phase={phase}
       aria-hidden="true"
-      onAnimationEnd={event => {
-        if (event.target !== event.currentTarget) return
-        if (phase === 'covering') onCovered()
-        if (phase === 'revealing') onRevealed()
-      }}
     >
-      <pre
-        className={styles.transitionCode}
-        style={{ '--line-count': sourceLines.length } as CSSProperties}
+      <div
+        className={styles.transitionWhite}
         onAnimationEnd={event => {
-          if (event.target === event.currentTarget && phase === 'code') onCodeComplete()
+          if (event.target === event.currentTarget && phase === 'revealing') onRevealed()
+        }}
+      />
+      <div
+        className={styles.transitionBlue}
+        onAnimationEnd={event => {
+          if (event.target === event.currentTarget && phase === 'covering') onCovered()
         }}
       >
-        <code>
-          {sourceLines.map((line, index) => (
-            <span
-              key={line}
-              className={styles.codeLine}
-              style={{ '--line-index': index } as CSSProperties}
-            >
-              {line}
-            </span>
-          ))}
-        </code>
-      </pre>
+        <pre
+          className={styles.transitionCode}
+          style={{ '--line-count': sourceLines.length } as CSSProperties}
+          onAnimationEnd={event => {
+            if (event.target === event.currentTarget && phase === 'code') onCodeComplete()
+          }}
+        >
+          <code>
+            {sourceLines.map((line, index) => (
+              <span
+                key={line}
+                className={styles.codeLine}
+                style={{ '--line-index': index } as CSSProperties}
+              >
+                {line}
+              </span>
+            ))}
+          </code>
+        </pre>
+      </div>
     </div>
   )
 }

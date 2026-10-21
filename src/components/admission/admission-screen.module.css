@@ -29,9 +29,25 @@
 .transition {
   --line-stagger: 35ms;
   --line-duration: 350ms;
+  --layer-delay: 180ms;
   position: absolute;
   inset: 0;
   z-index: 50;
+  overflow: hidden;
+}
+
+.transitionWhite,
+.transitionBlue {
+  position: absolute;
+  inset: 0;
+}
+
+.transitionWhite {
+  background: #fff;
+}
+
+.transitionBlue {
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -41,13 +57,20 @@
   color: #fff;
 }
 
-.transition[data-phase="covering"] {
+.transition[data-phase="covering"] .transitionWhite {
   animation: blueCover 450ms cubic-bezier(0.76, 0, 0.24, 1) both;
 }
 
-.transition[data-phase="revealing"] {
-  /* 从顶部移除蓝色与源码，一起露出下方白底的查询结果。 */
+.transition[data-phase="covering"] .transitionBlue {
+  animation: blueCover 450ms cubic-bezier(0.76, 0, 0.24, 1) var(--layer-delay) both;
+}
+
+.transition[data-phase="revealing"] .transitionBlue {
   animation: revealPage 550ms cubic-bezier(0.76, 0, 0.24, 1) both;
+}
+
+.transition[data-phase="revealing"] .transitionWhite {
+  animation: revealPage 550ms cubic-bezier(0.76, 0, 0.24, 1) var(--layer-delay) both;
 }
 
 .transitionCode {
@@ -107,7 +130,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .transition[data-phase],
+  .transition[data-phase] .transitionWhite,
+  .transition[data-phase] .transitionBlue,
   .transition[data-phase] .transitionCode,
   .transition[data-phase] .codeLine {
     animation-duration: 1ms;
