@@ -201,7 +201,7 @@ export function AdmissionScreen() {
 
             <div className={`${styles.panel} rounded-3xl border border-gray-200/80 bg-white shadow-[0_16px_64px_-32px_rgba(15,23,42,0.18)]`}>
               <form aria-busy={isSubmitting} noValidate onSubmit={submit}>
-                <fieldset disabled={isSubmitting} className={`${styles.fields} disabled:opacity-60`}>
+                <fieldset disabled={isSubmitting} className={styles.fields}>
                   <legend className="sr-only">录取信息查询</legend>
                   <div>
                     <label htmlFor="admission-student-id" className="flex items-center justify-between text-sm font-medium text-gray-800">
@@ -253,7 +253,7 @@ export function AdmissionScreen() {
                   </div>
                   <button
                     type="submit"
-                    className={`${styles.submit} group flex w-full items-center justify-center gap-3 rounded-xl bg-accent px-5 text-sm font-medium tracking-widest text-white transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent disabled:cursor-wait`}
+                    className={`${styles.submit} group flex w-full items-center justify-center gap-3 rounded-xl bg-accent px-5 text-sm font-medium tracking-widest text-white transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent disabled:cursor-wait disabled:opacity-60`}
                   >
                     {isSubmitting ? "查询中…" : "查询"}
                     {isSubmitting ? (
