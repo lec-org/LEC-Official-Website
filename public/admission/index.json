@@ -5,178 +5,58 @@
     "status": "accepted"
   },
   {
-    "studentId": "202631061111",
-    "name": "录取",
+    "studentId": "202531061022",
+    "name": "赵亦康",
     "status": "accepted"
   },
   {
-    "studentId": "202600000003",
-    "name": "示例学生03",
+    "studentId": "202531061009",
+    "name": "王硕",
     "status": "accepted"
   },
   {
-    "studentId": "202600000004",
-    "name": "示例学生04",
+    "studentId": "202531061326",
+    "name": "代泽阳",
     "status": "accepted"
   },
   {
-    "studentId": "202600000005",
-    "name": "示例学生05",
+    "studentId": "202531061404",
+    "name": "朱俊豪",
     "status": "accepted"
   },
   {
-    "studentId": "202600000006",
-    "name": "示例学生06",
+    "studentId": "202531060832",
+    "name": "赵佳琦",
     "status": "accepted"
   },
   {
-    "studentId": "202600000007",
-    "name": "示例学生07",
+    "studentId": "202531061211",
+    "name": "林佳政",
     "status": "accepted"
   },
   {
-    "studentId": "202600000008",
-    "name": "示例学生08",
+    "studentId": "202531060516",
+    "name": "付豪",
     "status": "accepted"
   },
   {
-    "studentId": "202600000009",
-    "name": "示例学生09",
+    "studentId": "202531060114",
+    "name": "罗闽渝",
     "status": "accepted"
   },
   {
-    "studentId": "202600000010",
-    "name": "示例学生10",
+    "studentId": "202531060221",
+    "name": "黄禹霖",
     "status": "accepted"
   },
   {
-    "studentId": "202600000011",
-    "name": "示例学生11",
-    "status": "accepted"
-  },
-  {
-    "studentId": "202600000012",
-    "name": "示例学生12",
+    "studentId": "202531060706",
+    "name": "汪美琳",
     "status": "accepted"
   },
   {
     "studentId": "202631060000",
     "name": "未录取",
-    "status": "interview_failed"
-  },
-  {
-    "studentId": "202531061012",
-    "name": "赵亦康",
-    "status": "interview_failed"
-  },
-  {
-    "studentId": "202600000015",
-    "name": "示例学生15",
-    "status": "interview_failed"
-  },
-  {
-    "studentId": "202600000016",
-    "name": "示例学生16",
-    "status": "interview_failed"
-  },
-  {
-    "studentId": "202600000017",
-    "name": "示例学生17",
-    "status": "interview_failed"
-  },
-  {
-    "studentId": "202600000018",
-    "name": "示例学生18",
-    "status": "interview_failed"
-  },
-  {
-    "studentId": "202600000019",
-    "name": "示例学生19",
-    "status": "interview_failed"
-  },
-  {
-    "studentId": "202600000020",
-    "name": "示例学生20",
-    "status": "interview_failed"
-  },
-  {
-    "studentId": "202600000021",
-    "name": "示例学生21",
-    "status": "interview_failed"
-  },
-  {
-    "studentId": "202600000022",
-    "name": "示例学生22",
-    "status": "interview_failed"
-  },
-  {
-    "studentId": "202600000023",
-    "name": "示例学生23",
-    "status": "interview_failed"
-  },
-  {
-    "studentId": "202600000024",
-    "name": "示例学生24",
-    "status": "interview_failed"
-  },
-  {
-    "studentId": "202600000025",
-    "name": "示例学生25",
-    "status": "interview_failed"
-  },
-  {
-    "studentId": "202600000026",
-    "name": "示例学生26",
-    "status": "interview_failed"
-  },
-  {
-    "studentId": "202600000027",
-    "name": "示例学生27",
-    "status": "interview_failed"
-  },
-  {
-    "studentId": "202600000028",
-    "name": "示例学生28",
-    "status": "interview_failed"
-  },
-  {
-    "studentId": "202600000029",
-    "name": "示例学生29",
-    "status": "interview_failed"
-  },
-  {
-    "studentId": "202600000030",
-    "name": "示例学生30",
-    "status": "interview_failed"
-  },
-  {
-    "studentId": "202600000031",
-    "name": "示例学生31",
-    "status": "interview_failed"
-  },
-  {
-    "studentId": "202600000032",
-    "name": "示例学生32",
-    "status": "interview_failed"
-  },
-  {
-    "studentId": "202600000033",
-    "name": "示例学生33",
-    "status": "interview_failed"
-  },
-  {
-    "studentId": "202600000034",
-    "name": "示例学生34",
-    "status": "interview_failed"
-  },
-  {
-    "studentId": "202600000035",
-    "name": "示例学生35",
-    "status": "interview_failed"
-  },
-  {
-    "studentId": "202600000036",
-    "name": "示例学生36",
     "status": "interview_failed"
   }
 ]
