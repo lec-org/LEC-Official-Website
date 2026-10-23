@@ -55,8 +55,158 @@
     "status": "accepted"
   },
   {
-    "studentId": "202631060000",
-    "name": "未录取",
+    "studentId": "202631060516",
+    "name": "庄震姜",
+    "status": "accepted"
+  },
+  {
+    "studentId": "202631060707",
+    "name": "刘峰源",
+    "status": "accepted"
+  },
+  {
+    "studentId": "202631060329",
+    "name": "牛闻举",
+    "status": "accepted"
+  },
+  {
+    "studentId": "202631061508",
+    "name": "钟晨彬",
+    "status": "accepted"
+  },
+  {
+    "studentId": "202631060308",
+    "name": "陈俊材",
+    "status": "accepted"
+  },
+  {
+    "studentId": "202631060920",
+    "name": "叶梦瑶",
+    "status": "accepted"
+  },
+  {
+    "studentId": "202631061028",
+    "name": "符传泓",
+    "status": "accepted"
+  },
+  {
+    "studentId": "202631060104",
+    "name": "李子佳",
+    "status": "accepted"
+  },
+  {
+    "studentId": "202631060515",
+    "name": "刘梓益",
+    "status": "accepted"
+  },
+  {
+    "studentId": "202631061013",
+    "name": "唐欣",
+    "status": "accepted"
+  },
+  {
+    "studentId": "202631061011",
+    "name": "梁朝凱",
+    "status": "accepted"
+  },
+  {
+    "studentId": "202631060410",
+    "name": "李政杰",
+    "status": "interview_failed"
+  },
+  {
+    "studentId": "202631060203",
+    "name": "王国祥",
+    "status": "interview_failed"
+  },
+  {
+    "studentId": "202631060913",
+    "name": "李诚雨",
+    "status": "interview_failed"
+  },
+  {
+    "studentId": "202631060330",
+    "name": "张凯瑞",
+    "status": "interview_failed"
+  },
+  {
+    "studentId": "202631060527",
+    "name": "肖锦瑜",
+    "status": "interview_failed"
+  },
+  {
+    "studentId": "202631060902",
+    "name": "杨熙鉴",
+    "status": "interview_failed"
+  },
+  {
+    "studentId": "202631060916",
+    "name": "刘雷",
+    "status": "interview_failed"
+  },
+  {
+    "studentId": "202631060328",
+    "name": "刘梅",
+    "status": "interview_failed"
+  },
+  {
+    "studentId": "202631060324",
+    "name": "高欣怡",
+    "status": "interview_failed"
+  },
+  {
+    "studentId": "202631060912",
+    "name": "刘家奇",
+    "status": "interview_failed"
+  },
+  {
+    "studentId": "202631060111",
+    "name": "潘浩坤",
+    "status": "interview_failed"
+  },
+  {
+    "studentId": "202631060207",
+    "name": "侯煜祺",
+    "status": "interview_failed"
+  },
+  {
+    "studentId": "202631060509",
+    "name": "宋家瑞",
+    "status": "interview_failed"
+  },
+  {
+    "studentId": "202631060523",
+    "name": "郑莹",
+    "status": "interview_failed"
+  },
+  {
+    "studentId": "202631060726",
+    "name": "赵佳",
+    "status": "interview_failed"
+  },
+  {
+    "studentId": "202631060221",
+    "name": "郭钰娇",
+    "status": "interview_failed"
+  },
+  {
+    "studentId": "202631060221",
+    "name": "李雨桐",
+    "status": "interview_failed"
+  },
+  {
+    "studentId": "202631060221",
+    "name": "王岩鑫",
+    "status": "interview_failed"
+  },
+  {
+    "studentId": "202631060221",
+    "name": "王世发",
+    "status": "interview_failed"
+  },
+  {
+    "studentId": "202631060221",
+    "name": "唐梓砚",
     "status": "interview_failed"
   }
 ]
