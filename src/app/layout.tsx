@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://lec-page-2026.ziroo.cn'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://lecspace.top'),
   title: '乐程软件工作室',
   description:
     '乐程软件工作室 2026 年招新，面向西南石油大学全体大一新生。涵盖全栈开发、Agent开发、游戏开发等多种方向，参与实际项目，提升编程技能。',
