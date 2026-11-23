@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://lec-page-2026.ziroo.cn/sitemap.xml
+Sitemap: https://lecspace.top/sitemap.xml
