@@ -4,6 +4,7 @@ import { Fragment, useEffect, useRef, useState, type ComponentType } from 'react
 import LenisScroll from '../components/LenisScroll'
 import LoadingScreen from '../components/LoadingScreen'
 import QuoteSection from '../components/QuoteSection'
+import SiteFooter from '../components/SiteFooter'
 import Ticker from '../components/Ticker'
 import type { AlumniMember } from '@/lib/members'
 import type { HistoryItem } from '@/lib/news'
@@ -144,6 +145,7 @@ export default function Home({ members, news }: HomeProps) {
       <FixedNav items={sections} />
       <LenisScroll>
         <HomeSections items={sections} members={members} news={news} />
+        <SiteFooter />
       </LenisScroll>
       <LoadingScreen onFinish={() => {}} />
     </div>
